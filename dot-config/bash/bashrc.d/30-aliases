@@ -1,0 +1,20 @@
+#! /bin/bash
+#  by Andrew Velez
+
+# aliases
+alias ls='ls --color=auto'
+alias l='ls -Al'
+alias ll='ls -AlL'
+alias e='code-oss -r'
+alias where='whereis'
+alias sudo='sudo '
+
+# void linux
+alias vinstall='xbps-install -S'
+alias vsearch='xbps-query -Rs'
+alias vremove='xbps-remove'
+alias vupdate='xbps-install -Su; flatpak update'
+
+# directory shortcuts
+alias ph='cd $HOME; clear'
+alias 2bash='cd $HOME/.config/bash'

@@ -1,0 +1,18 @@
+#! /bin/bash
+#  by Andrew Velez
+#
+#  Bash functions namespaced with my initials av (a-to-v; just short of everything)
+
+av:add-path() {
+
+  for NEW_PATH in "$@"; do
+    [[ -d "$NEW_PATH" ]] || continue
+
+    if [[ "${PATH}" != *"${NEW_PATH}"* ]]; then
+      PATH="${PATH}:${NEW_PATH}"
+    fi
+  done
+  unset "NEW_PATH"
+
+}
+export -f av:add-path
