@@ -1,0 +1,101 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "var": {
+    "Color-Palette-Url": "https://colorkit.co/color-palette-generator/e00000-ff4920-ffaa00-fff41d-fffc98-b3e3ff-4a95ff/",
+    "Separator": "⁝\u2009"
+  },
+  "palette": {
+    "racing-blazing-flame": "#e00000",
+    "blazing-flame": "#ff4920",
+    "orange": "#ffaa00",
+    "bright-lemon": "#fff41d",
+    "lime-cream": "#fffc98",
+    "icy-blue": "#b3e3ff",
+    "blue-energy": "#4a95ff"
+  },
+  "terminal_background": "p:background",
+  "console_title_template": "{{ .UserName }}@{{ .HostName }}",
+  "enable_cursor_positioning": true,
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "p:blazing-flame",
+          "style": "plain",
+          "template": "{{.Var.Separator}}\uf32e Void ",
+          "type": "os"
+        },
+        {
+          "foreground": "p:orange",
+          "style": "plain",
+          "template": "{{.Var.Separator}}{{ .UserName }}@{{ .HostName }} ",
+          "type": "session"
+        },
+        {
+          "foreground": "p:bright-lemon",
+          "style": "plain",
+          "properties": {
+            "style": "full"
+          },
+          "template": "{{.Var.Separator}}{{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "p:lime-cream",
+          "properties": {
+            "branch_icon": "",
+            "fetch_status": true,
+            "fetch_worktree_count": true
+          },
+          "style": "plain",
+          "template": "{{.Var.Separator}}<p:lime-cream>git</>:({{ if or (.Working.Changed) (.Staging.Changed) (gt .StashCount 0) }}<p:magenta>{{ .HEAD }}</>{{ else }}<p:green>{{ .HEAD }}</>{{ end }}{{ if (gt .Ahead 0)}}<p:icy-blue>{{ .BranchStatus }}</>{{ end }}{{ if (gt .Behind 0)}}<p:icy-blue>{{ .BranchStatus }}</>{{ end }}{{ if .Staging.Changed }} <p:green>{{ .Staging.String }}</>{{ end }}{{ if .Working.Changed }} <p:blazing-flame>{{ .Working.String }}</>{{ end }})",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "newline": false,
+      "segments": [
+        {
+          "foreground": "p:icy-blue",
+          "style": "plain",
+          "template": "{{.Var.Separator}}{{ if eq .Code 0 }}\ueba4{{ else }}<p:blazing-flame>\uea87</> Failure [{{ reason .Code }}]{{ end }} ",
+          "properties": {
+            "always_enabled": true
+          },
+          "type": "status"
+        },
+        {
+          "foreground": "p:blue-energy",
+          "style": "plain",
+          "properties": {
+            "format": "RFC3339"
+          },
+          "template": "{{.Var.Separator}}{{ .CurrentDate | date .Format }} ",
+          "type": "time"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": "{{ if .Root }}<p:blazing-flame>{{.Var.Separator}}#> </>{{ else }}<p:blue-energy>{{.Var.Separator}}$> </>{{ end }}",
+          "type": "session"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 3
+}
